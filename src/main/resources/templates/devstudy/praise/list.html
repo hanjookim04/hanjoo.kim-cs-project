@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/devstudy/layout/basic :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <h1 class="mt-4">Praise List
+            <span>
+                <a th:href="@{/devstudy/praise/register}">
+                    <button type="button" class="btn btn-outline-primary">REGISTER
+                    </button>
+                </a>
+            </span>
+        </h1>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>SENDER</th>
+                <th>RECEIVER</th>
+                <th>PRAISE</th>
+                <th>DATE</th>
+            </tr>
+            </thead>
+            <tr th:each="dto : ${result.dtoList}">
+                <th scope="row">
+                    <a th:href="@{/devstudy/praise/detail(id=${dto.id},page=${result.page},type=${pageRequestDTO.type},keyword=${pageRequestDTO.keyword})}">[[${dto.id}]]</a>
+                </th>
+                <td scope="row">[[${dto.sender}]]</td>
+                <td scope="row">[[${dto.receiver}]]</td>
+                <td scope="row">[[${dto.praiseType}]]</td>
+                <td>[[${#temporals.format(dto.createdAt,'yyyy/MM/dd')}]]</td>
+            </tr>
+
+        </table>
+
+        <ul class="pagination h-100 justify-content-center align-items-center">
+            <li class="page-item " th:if="${result.prev}">
+                <a class="page-link" th:href="@{/devstudy/praise/list(page=${result.start-1},type=${pageRequestDTO.type},keyword=${pageRequestDTO.keyword})}" tabindex="-1">Previous</a>
+            </li>
+
+            <li th:class=" 'page-item '+ ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{/devstudy/praise/list(page=${page},type=${pageRequestDTO.type},keyword=${pageRequestDTO.keyword})}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item " th:if="${result.next}">
+                <a class="page-link" th:href="@{/devstudy/praise/list(page=${result.end+1},type=${pageRequestDTO.type},keyword=${pageRequestDTO.keyword})}" >Next</a>
+            </li>
+        </ul>
+
+
+
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            var msg = [[${msg}]];
+            console.log(msg);
+
+            if(msg){
+                $(".modal").modal();
+            }
+
+            var searchForm = $("#searchForm");
+
+            $('.btn-search').click(function(e){
+
+                searchForm.submit();
+
+            });
+
+            $('.btn-clear').click(function(e){
+
+                searchForm.empty().submit();
+
+            });
+
+
+        </script>
+    </th:block>
+
+</th:block>
+
+</html>

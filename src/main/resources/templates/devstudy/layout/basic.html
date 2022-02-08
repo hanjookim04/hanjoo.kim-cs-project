@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <th:block th:fragment="setContent(content)">
+
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+            <meta name="description" content="" />
+            <meta name="author" content="" />
+            <title>Simple Sidebar - Start Bootstrap Template</title>
+            <script th:src="@{/jquery/jquery.min.js}"></script>
+            <!-- Favicon-->
+            <link rel="icon" type="image/x-icon" th:href="@{/bootstrap/simple-sidebar/assets/favicon.ico}" />
+            <!-- Core theme CSS (includes Bootstrap)-->
+            <link th:href="@{/bootstrap/simple-sidebar/css/styles.css}" rel="stylesheet" />
+
+            <!-- Bootstrap core JS-->
+            <script th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>
+            <!-- Core theme JS-->
+            <script th:src="@{/bootstrap/simple-sidebar/js/scripts.js}"></script>
+        </head>
+        <body>
+            <div class="d-flex" id="wrapper">
+                <!-- Page content wrapper-->
+                <div id="page-content-wrapper">
+                    <!-- Top navigation-->
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                        <div class="container-fluid">
+                            <a th:href="@{/devstudy/praise/list}"><button class="btn btn-primary">Home</button></a>
+                        </div>
+                    </nav>
+                    <!-- Page content-->
+                    <div class="container-fluid">
+                        <th:block th:replace = "${content}"></th:block>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </th:block>
+
+
+</html>
