@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/devstudy/praise")
 @Log4j2
 @RequiredArgsConstructor
-public class PraseController {
+public class PraiseController {
 
     private final PraiseService praiseService; //final 로 선언
 
@@ -32,7 +32,7 @@ public class PraseController {
     @GetMapping({"/", "list"})
     public String list(PageRequestDTO pageRequestDTO, Model model){
 
-        log.info("[PraseController] praise list....");
+        log.info("[PraiseController] praise list....");
 
         model.addAttribute("result", praiseService.getPraiseList(pageRequestDTO));
 
@@ -42,14 +42,14 @@ public class PraseController {
 
     @GetMapping("/register")
     public String register(){
-        log.info("[PraseController] praise register form......");
+        log.info("[PraiseController] praise register form......");
         return "/devstudy/praise/registerForm";
     }
 
 
     @PostMapping("/register")
     public String registerPost(PraiseDTO praiseDTO, RedirectAttributes redirectAttributes){
-        log.info("[PraseController] praise registerPost");
+        log.info("[PraiseController] praise registerPost");
         log.info("[PraiseDTO]"+ praiseDTO);
 
         Long id = praiseService.registerPraise(praiseDTO);
@@ -63,7 +63,7 @@ public class PraseController {
     @GetMapping({"detail"})
     public void detail(Long id, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model){
 
-        log.info("[PraseController] praise detail");
+        log.info("[PraiseController] praise detail");
         log.info("[id]"+id);
 
         PraiseDTO praiseDTO = praiseService.getPraiseDetail(id);
