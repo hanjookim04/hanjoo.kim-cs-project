@@ -61,9 +61,9 @@
 ``` bash
 Springboot 웹어플리케이션 패키지 구조
 hanjoo.kim-cs-project
-├── controller            -------> # controller to search path
-├── domain                 -------> # entity model
+├── controller          -------> # controller to search path
+├── domain              -------> # entity model
 ├── dto                 -------> # manage dto
-├── repository                 -------> # jpa
-└── service                  -------> # business logic
+├── repository          -------> # jpa
+└── service             -------> # business logic
 ```
